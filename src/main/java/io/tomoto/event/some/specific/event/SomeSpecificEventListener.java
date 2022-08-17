@@ -11,8 +11,11 @@ import io.tomoto.event.IEventListener;
  */
 public class SomeSpecificEventListener extends IEventListener<SomeSpecificEvent> {
 
+    public static final IEventListener.IEventHandler<SomeSpecificEvent> DEFAULT_HANDLER =
+            event -> System.out.println(event.getMessage());
+
     public SomeSpecificEventListener() {
-        getHandlerList().add(event -> System.out.println("handler1"));
+        addHandler(DEFAULT_HANDLER);
     }
 
 }

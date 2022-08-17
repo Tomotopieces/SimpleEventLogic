@@ -18,21 +18,39 @@ public abstract class IEventListener<E extends IEvent> {
     private final List<IEventHandler<E>> handlerList = new LinkedList<>();
 
     /**
-     * 获取处理器表
-     *
-     * @return 处理器表
-     */
-    public List<IEventHandler<E>> getHandlerList() {
-        return handlerList;
-    }
-
-    /**
      * 处理事件
      *
      * @param event 事件
      */
     public void handle(E event) {
         handlerList.forEach(handler -> handler.invoke(event));
+    }
+
+    /**
+     * 添加处理器
+     *
+     * @param handler 处理器
+     * @return 成功与否
+     */
+    public boolean addHandler(IEventHandler<E> handler) {
+        return handlerList.add(handler);
+    }
+
+    /**
+     * 移除处理器
+     *
+     * @param handler 处理器
+     * @return 成功与否
+     */
+    public boolean removeHandler(IEventHandler<E> handler) {
+        return handlerList.remove(handler);
+    }
+
+    /**
+     * 清空处理器表
+     */
+    public void clearHandler() {
+        handlerList.clear();
     }
 
 

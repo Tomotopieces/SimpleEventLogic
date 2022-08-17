@@ -15,7 +15,11 @@ public final class EventCenter {
     /**
      * 事件-事件监听器 map
      */
-    private static final Map<Class<? extends IEvent>, IEventListener<? extends IEvent>> EVENT_TO_LISTENER_MAP = new HashMap<>();
+    private static final Map<Class<? extends IEvent>, IEventListener<? extends IEvent>> EVENT_TO_LISTENER_MAP; // 日你妈, 为什么Java没有Dependent Type
+
+    static {
+        EVENT_TO_LISTENER_MAP = new HashMap<>();
+    }
 
     /**
      * 注册事件监听器

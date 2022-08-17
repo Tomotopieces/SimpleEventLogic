@@ -10,4 +10,15 @@ import io.tomoto.event.IEvent;
  * @since 1.0
  */
 public class SomeSpecificEvent implements IEvent {
+
+    private String message = "Some specific event";
+
+    public String getMessage() {
+        return message;
+    }
+
+    public SomeSpecificEvent setMessage(String message) {
+        this.message = message;
+        return this;
+    }
 }
