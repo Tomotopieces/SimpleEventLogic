@@ -13,14 +13,13 @@ import io.tomoto.event.some.specific.event.SomeSpecificEventListener;
  */
 public class Main {
     public static void main(String[] args) {
-        SomeSpecificEventListener listener = new SomeSpecificEventListener();
-        EventCenter.register(SomeSpecificEvent.class, listener);
+        EventCenter.register(SomeSpecificEvent.class, new SomeSpecificEventListener());
 
         EventCenter.handleEvent(new SomeSpecificEvent());
 
         System.out.println();
 
-        listener.getHandlerList().add(event -> System.out.println("handler2"));
+        EventCenter.getListener(SomeSpecificEvent.class).getHandlerList().add(event -> System.out.println("handler2"));
         EventCenter.handleEvent(new SomeSpecificEvent());
     }
 }

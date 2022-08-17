@@ -15,7 +15,7 @@ public final class EventCenter {
     /**
      * 事件-事件监听器 map
      */
-    private static final Map<Class<? extends IEvent>, IEventListener<?>> EVENT_TO_LISTENER_MAP = new HashMap<>();
+    private static final Map<Class<? extends IEvent>, IEventListener<? extends IEvent>> EVENT_TO_LISTENER_MAP = new HashMap<>();
 
     /**
      * 注册事件监听器
@@ -25,6 +25,17 @@ public final class EventCenter {
      */
     public static <E extends IEvent> void register(Class<E> eventClass, IEventListener<E> listener) {
         EVENT_TO_LISTENER_MAP.put(eventClass, listener);
+    }
+
+    /**
+     * 获取当前注册的事件对应监听器
+     *
+     * @param eventClass 事件类型
+     * @param <E>        事件类型
+     * @return 事件监听器
+     */
+    public static <E extends IEvent> IEventListener<E> getListener(Class<E> eventClass) {
+        return (IEventListener<E>) EVENT_TO_LISTENER_MAP.get(eventClass);
     }
 
     /**
