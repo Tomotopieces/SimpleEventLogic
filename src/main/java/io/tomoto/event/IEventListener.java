@@ -18,6 +18,25 @@ public abstract class IEventListener<E extends IEvent> {
     private final List<IEventHandler<E>> handlerList = new LinkedList<>();
 
     /**
+     * 添加默认处理器
+     */
+    public IEventListener() {
+        addHandler(getDefaultHandler());
+    }
+
+    /**
+     * 获取默认处理器
+     * <p>
+     * 未重载处理器不进行操作
+     *
+     * @return 默认处理器
+     */
+    protected IEventHandler<E> getDefaultHandler() {
+        return event -> {
+        };
+    }
+
+    /**
      * 处理事件
      *
      * @param event 事件
